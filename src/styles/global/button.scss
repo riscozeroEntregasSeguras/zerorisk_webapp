@@ -1,0 +1,72 @@
+@import "../variables";
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    .button {
+        margin: 0.3em;
+    }
+}
+
+.button {
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    background: $grey-5;
+    color: $white-1;
+    font-size: 0.9em;
+    border-radius: 3px;
+    font-weight: 700;
+    text-align: center;
+    height: 3em;
+    line-height: 3em;
+
+    &:active {
+        outline: none;
+    }
+    &:disabled {
+        cursor: not-allowed;
+        opacity: .4;
+    }
+
+    &.button--upper {
+        text-transform: uppercase;
+    }
+
+    // Color mutations
+    &.button--white {
+        background: transparent;
+        border: solid 2px $grey-5;
+        color: $grey-5;
+    }
+
+    // Size mutations
+    &.button--size-1 {
+        width: 160px;
+        font-size: 1em;
+        // RESPONSIVE
+        height: 35px;
+    }
+}
+
+@media screen and (min-width: $break-tablet) {
+    .button {
+
+        // Size mutations
+        &.button--size-1 {
+            height: 40px;
+        }
+    }
+}
+
+@media screen and (min-width: $break-desktop) {
+    .button {
+
+        // Size mutations
+        &.button--size-1 {
+            height: 45px;
+        }
+    }
+}

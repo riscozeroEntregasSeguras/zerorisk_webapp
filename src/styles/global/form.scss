@@ -1,0 +1,51 @@
+@import "../variables.scss";
+
+.form {
+
+    .form__group {
+        position: relative;
+
+        .form__group-label {
+            display: block;
+            color: $grey-3;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .form__group-icon {
+            position: absolute;
+            bottom: 11px;
+            right: 16px;
+            font-size: 18px;
+            color: $grey-5;
+
+            span {
+                display: inline-block;
+                margin-right: 8px;
+                font-weight: 700;
+            }
+        }
+
+        &.form__group--flex {
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+
+            > .form__group {
+                margin: 0 1.3em;
+                flex: 1;
+
+                &:first-child {
+                    margin-left: 0;
+                }
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+
+        &.form__group--disabled {
+            opacity: 0.4;
+        }
+    }
+}

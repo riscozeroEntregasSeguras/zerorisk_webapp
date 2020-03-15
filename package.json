@@ -1,0 +1,64 @@
+{
+  "name": "coveats-front",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://JFCODES-2:gitedREG36TheYTf@github.com/JFCodes-2/coveats-front.git"
+  },
+  "author": "JFCodes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JFCodes-2/coveats-front/issues"
+  },
+  "homepage": "https://github.com/JFCodes-2/coveats-front#readme",
+  "scripts": {
+    "heroku-postbuild": "npm install --prefix client && npm run build",
+    "start": "node server.js",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.26",
+    "@fortawesome/free-regular-svg-icons": "^5.12.0",
+    "@fortawesome/free-solid-svg-icons": "^5.12.0",
+    "@fortawesome/vue-fontawesome": "^0.1.9",
+    "axios": "^0.19.1",
+    "core-js": "^3.4.4",
+    "express": "^4.17.1",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "tiny-cookie": "^2.3.1",
+    "v-money": "^0.8.1",
+    "vue": "^2.6.10",
+    "vue-class-component": "^7.0.2",
+    "vue-js-modal": "^1.3.31",
+    "vue-property-decorator": "^8.3.0",
+    "vue-router": "^3.1.3",
+    "vue-the-mask": "^0.11.1",
+    "vuex": "^3.1.2"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/lodash": "^4.14.149",
+    "@types/moment": "^2.13.0",
+    "@types/vue-router": "^2.0.0",
+    "@types/vue-the-mask": "^0.11.0",
+    "@vue/cli-plugin-babel": "^4.1.0",
+    "@vue/cli-plugin-eslint": "^4.1.0",
+    "@vue/cli-plugin-router": "^4.1.0",
+    "@vue/cli-plugin-typescript": "^4.1.0",
+    "@vue/cli-plugin-vuex": "^4.1.0",
+    "@vue/cli-service": "^4.1.0",
+    "@vue/eslint-config-airbnb": "^4.0.0",
+    "@vue/eslint-config-typescript": "^4.0.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^8.0.0",
+    "typescript": "~3.5.3",
+    "vue-template-compiler": "^2.6.10"
+  }
+}

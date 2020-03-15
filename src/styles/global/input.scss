@@ -1,0 +1,78 @@
+@import "../variables";
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.input {
+    box-sizing: border-box;
+    color: $grey-3;
+    display: block;
+    width: 100%;
+    background: $grey-4;
+    border: solid .5px rgba(208,208,208,0.3);
+    border-radius: 2.2px;
+    font-size: 1em;
+    // RESPONSIVE
+    line-height: 35px;
+    padding: 0 0.8em;
+
+    &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: $grey-3;
+        opacity: .6;
+    }
+    
+    &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: $grey-3;
+        opacity: .6;
+    }
+    
+    &::-ms-input-placeholder { /* Microsoft Edge */
+        color: $grey-3;
+        opacity: .6;
+    }
+
+    &.input--textarea {
+        padding: 0.8em;
+        resize: none;
+        line-height: 1.2em;
+        height: 10em;
+    }
+
+    // Size mutations
+    &.input--slim {
+        height: 42px;
+        line-height: 42px;
+        padding: 0 0.4em;
+    }
+    &.input--table {
+        height: 30px;
+        line-height: 30px;
+        padding: 0 0.4em;
+        border-radius: 0;
+    }
+
+    // State mutations
+    &.input--error {
+        border: solid 2px $red-error;
+        border-radius: 4px;
+    }
+
+    &.input--disabled {
+        cursor: not-allowed;
+    }
+}
+
+@media screen and (min-width: $break-tablet) {
+    .input {
+        line-height: 45px;
+        padding: 0 1em;
+    }
+}
+@media screen and (min-width: $break-desktop) {
+    .input {
+        line-height: 55px;
+        padding: 0 1.3em;
+    }
+}

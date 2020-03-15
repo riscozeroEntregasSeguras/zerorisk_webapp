@@ -1,0 +1,27 @@
+@import "../variables.scss";
+@import "./list.scss";
+
+.listItem {
+    height: 62px;
+    background: $white-1;
+    margin-bottom: 8px;
+    box-shadow: $shadow-2;
+    color: $grey-1;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 $list_line_padding;
+    text-decoration: none;
+    cursor: pointer;
+
+    .listItem__field {
+
+        &.listItem__field--text-smal {
+            font-size: 0.8em;
+        }
+        &.listItem__field--pointer {
+            cursor: pointer;
+        }
+    }
+}

@@ -1,0 +1,31 @@
+@import "../variables.scss";
+
+$notification_item_width: 600px;
+
+.notifications {
+    z-index: 1100;
+    position: fixed;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: $notification_item_width;
+    max-width: 90%; // Gives some window padding on smaller devices
+
+    .notifications__item {
+        display: block;
+        width: 100%;
+        margin-bottom: 1em;
+        padding: 0.6em 2em;
+        font-size: 1em;
+        font-weight: 700;
+        line-height: 20px;
+        text-align: center;
+        box-shadow: $shadow-2;
+        background: $grey-5;
+        color: $white-1;
+
+        &:last-child {
+            margin-bottom: none;
+        }
+    }
+}

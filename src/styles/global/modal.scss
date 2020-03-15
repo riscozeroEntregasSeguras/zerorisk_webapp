@@ -1,0 +1,82 @@
+@import "../variables";
+
+.v--modal {
+  border-radius: 0 !important;
+}
+
+.modal {
+  position: relative;
+  border-radius: 0;
+  // RESPONSIVE
+  padding: 20px 20px;
+
+  .modal__close {
+    cursor: pointer;
+    position: absolute;
+    // RESPONSIVE
+    top: 12px;
+    right: 12px;
+  }
+
+  .modal__title {
+    color: $grey-1;
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+  }
+
+  .modal__content {
+    // RESPONSIVE
+    margin-bottom: 20px;
+
+    p {
+      line-height: 1.2em;
+      margin-bottom: 0.6em;
+    }
+  }
+  .modal__footer {
+    text-align: right;
+
+    .button {
+      display: inline-block;
+      margin-left: 10px;
+    }
+  }
+
+  .modal__image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  // Mutations for specific components inside modals
+  &.modal--invoice {
+    padding: 0;
+  }
+}
+
+@media screen and (min-width: $break-tablet) {
+  .modal {
+    padding: 32px 30px;
+
+    .modal__close {
+      top: 22px;
+      right: 22px;
+    }
+
+    .modal__content {
+      margin-bottom: 40px;
+    }
+  }
+}
+@media screen and (min-width: $break-desktop) {
+  .modal {
+    padding: 62px 60px;
+
+    .modal__close {
+      top: 32px;
+      right: 32px;
+    }
+  }
+}

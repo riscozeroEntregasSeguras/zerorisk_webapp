@@ -1,0 +1,14 @@
+@import "../variables.scss"; 
+
+// Route classes must be defined on the div with
+// class .page
+
+.page {
+    &.routeCenterCard {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $grey-1;
+        padding: 20px;
+    }
+}

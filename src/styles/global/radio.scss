@@ -1,0 +1,32 @@
+@import "../variables.scss";
+
+.radio {
+
+    .radio__option {
+        cursor: pointer;
+        display: inline-block;
+        margin-right: 30px;
+
+        .radio__option-circle {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+            background: $grey-4;
+            border: solid 1px $white-6;
+            margin-right: 8px;
+            vertical-align: bottom;
+        }
+        .radio__option-value {
+            display: inline-block;
+            color: $grey-3;
+            font-weight: 700;
+        }
+
+        &.radio__option--selected {
+            .radio__option-circle {
+                background: $white-6;
+            }
+        }
+    }
+}
