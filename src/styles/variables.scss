@@ -1,4 +1,31 @@
+// Colors
 $white-1: #ffffff;
+
+$green-1: #7FA232; // STATE: RECUPERADO e ESTOU_BEM
+$yeallow-1: #D0BE3F; // STATE: EU_QUARENTENA 
+$blue-1: #37718E; // STATE: COM_CONVID_SEM_SINTOMAS
+$red-1: #C33C54; // STATE: COM_CONVID_DOENTE
+$black-1: #191919; // STATE: FALECIDO
+
+// Shadows
+$shadow-1: 0px 0px 17px -4px rgba(0,0,0,0.75);
+$shadow-2: 0px 0px 6px -4px rgba(0,0,0,0.75);
+
+// Color to state attr
+$state_estou_bem: $green-1;
+$state_em_quarentena: $yeallow-1;
+$state_com_convid_sem_sintomas: $blue-1;
+$state_com_convid_doente: $red-1;
+$state_recuperado: $green-1;
+$state_falecido: $black-1;
+
+// Breakpoints
+$break-mobile: 300px;
+$break-tablet: 600px;
+$break-desktop: 900px;
+$break-hd: 1200px;
+
+// To refactor:
 $white-2: #F2F2F2;
 $white-3: #D8D8D8;
 $white-4: #F3F3F3;
@@ -12,11 +39,3 @@ $grey-5: #9B9B9B;
 $grey-6: #D1D1D1;
 $red-error: #F13030;
 $orange-warning: #FF6700;
-
-$shadow-1: 0px 0px 17px -4px rgba(0,0,0,0.75);
-$shadow-2: 0px 0px 6px -4px rgba(0,0,0,0.75);
-
-$break-mobile: 300px;
-$break-tablet: 600px;
-$break-desktop: 900px;
-$break-hd: 1200px;

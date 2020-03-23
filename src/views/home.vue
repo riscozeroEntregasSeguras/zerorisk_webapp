@@ -1,10 +1,17 @@
 <template>
-  <h2 class="login__title text__title-expense">Zero Risk Boilerplate</h2>
+  <div class="page__content">
+    <selector-state />
+    <selector-location />
+  </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 // Components
+import SelectorState from '../components/selector/state.vue';
+import SelectorLocation from '../components/selector/location.vue';
 
-@Component({})
+@Component({
+  components: { SelectorState, SelectorLocation },
+})
 export default class ViewHome extends Vue {}
 </script>

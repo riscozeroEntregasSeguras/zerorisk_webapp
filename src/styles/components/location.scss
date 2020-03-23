@@ -1,0 +1,23 @@
+@import "../variables.scss";
+
+.location {
+    padding: 0.4em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .location__title {
+        margin-bottom: 0.4em;
+    }
+    
+    .location__option {
+        padding: 0.2em 0;
+        width: 15em;
+
+        .location__option-button {
+            width: 100%;
+            text-transform: uppercase;
+        }
+    }
+}

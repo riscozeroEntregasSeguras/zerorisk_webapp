@@ -1,0 +1,24 @@
+@import "../variables.scss";
+
+.state {
+    padding: 0.4em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2em;
+
+    .state__title {
+        margin-bottom: 0.4em;
+    }
+    
+    .state__option {
+        padding: 0.2em 0;
+        width: 15em;
+
+        .state__option-button {
+            width: 100%;
+            text-transform: uppercase;
+        }
+    }
+}

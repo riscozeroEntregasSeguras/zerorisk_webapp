@@ -1,24 +1,57 @@
 <template>
-  <div id="app" class="page" :class="routeClass">
-    <modals-container/>
-    <router-view />
+  <div id="app" class="page" :class="pageClass">
+    <misc-loading v-if="masterLoading"/>
+    <view-offline v-if="!isOnline"/>
+    <template v-else>
+      <modals-container />
+      <misc-navigation />
+      <router-view />
+    </template>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import PAGES from './router/pages';
-// Components
 import ACTIONS from './store/types-actions';
+import MUTATIONS from './store/types-mutations';
+import { USER_STATUS } from './store/interfaces/user';
+// Components
+import MiscLoading from './components/misc/loading.vue';
+import MiscNavigation from './components/misc/navigation.vue';
+import ViewOffline from './views/offline.vue';
 
-@Component({})
+@Component({
+  components: {
+    MiscLoading,
+    MiscNavigation,
+    ViewOffline,
+  },
+})
 export default class App extends Vue {
   /**
    * Routes can define a global class injected on the root app
    * element.
    */
   get routeClass(): undefined | string {
-    if (!this.$route.meta) return undefined;
-    return this.$route.meta.routeClass;
+    if (!this.$route.meta) return '';
+    return this.$route.meta.routeClass || '';
+  }
+
+  get userStatus(): '' | USER_STATUS {
+    if (!this.$store.state.user.validSession) return '';
+    return this.$store.state.user.user.status;
+  }
+
+  get pageClass(): string {
+    return `${this.routeClass} page--${this.userStatus}`;
+  }
+
+  get masterLoading(): boolean {
+    return this.$store.state.masterLoading;
+  }
+
+  get isOnline(): boolean {
+    return this.$store.state.online;
   }
 
   logout() {
@@ -28,8 +61,13 @@ export default class App extends Vue {
   }
 
   mounted() {
+    this.$store.dispatch(ACTIONS.APP_STATUS);
     // @ts-ignore
     window.logout = this.logout;
+    // @ts-ignore
+    window.forceOffline = () => {
+      this.$store.commit(MUTATIONS.GLOBAL_SET_API_OFFLINE);
+    };
   }
 }
 </script>

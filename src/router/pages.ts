@@ -1,4 +1,4 @@
-enum PAGES {
+export enum PAGES {
     ROOT = 'ROOT', // Only defined path '/', redirects to login
     HOME = 'HOME',
     LOGIN = 'LOGIN',

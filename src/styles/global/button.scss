@@ -1,31 +1,21 @@
 @import "../variables";
 
-.buttons {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-
-    .button {
-        margin: 0.3em;
-    }
-}
-
 .button {
     cursor: pointer;
     display: block;
-    width: 100%;
-    background: $grey-5;
-    color: $white-1;
+    color: $black-1;
     font-size: 0.9em;
-    border-radius: 3px;
+    border-radius: 5px;
     font-weight: 700;
     text-align: center;
     height: 3em;
     line-height: 3em;
+    border: solid 1.5px $white-1;
 
     &:active {
         outline: none;
     }
+
     &:disabled {
         cursor: not-allowed;
         opacity: .4;
@@ -35,38 +25,16 @@
         text-transform: uppercase;
     }
 
-    // Color mutations
-    &.button--white {
-        background: transparent;
-        border: solid 2px $grey-5;
-        color: $grey-5;
+    &.button--active {
+        background: $black-1;
+        color: $white-1;
     }
 
-    // Size mutations
-    &.button--size-1 {
-        width: 160px;
-        font-size: 1em;
-        // RESPONSIVE
-        height: 35px;
-    }
-}
-
-@media screen and (min-width: $break-tablet) {
-    .button {
-
-        // Size mutations
-        &.button--size-1 {
-            height: 40px;
-        }
-    }
-}
-
-@media screen and (min-width: $break-desktop) {
-    .button {
-
-        // Size mutations
-        &.button--size-1 {
-            height: 45px;
-        }
-    }
+    // COLOR mutations
+    &.button--ESTOU_BEM { background: $state_estou_bem; }
+    &.button--EU_QUARENTENA { background: $state_em_quarentena; }
+    &.button--COM_CONVID_SEM_SINTOMAS { background: $state_com_convid_sem_sintomas; }
+    &.button--COM_CONVID_DOENTE { background: $state_com_convid_doente; }
+    &.button--RECUPERADO { background: $state_recuperado; }
+    &.button--FALECIDO { background: $state_falecido; }
 }

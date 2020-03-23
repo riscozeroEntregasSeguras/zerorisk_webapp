@@ -3,12 +3,18 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 // Only import needed icons
 // Keeps bundle size to the minimum
 import {
-  faExclamationTriangle,
+  faHome,
+  faCar,
+  faHospital,
+  faPlane,
 } from '@fortawesome/free-solid-svg-icons';
 
 // Register font awesome icons
 library.add(
-  faExclamationTriangle,
+  faHome,
+  faCar,
+  faHospital,
+  faPlane,
 );
 
 export default FontAwesomeIcon;

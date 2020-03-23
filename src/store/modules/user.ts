@@ -3,7 +3,7 @@ import { cloneDeep } from 'lodash';
 import { setCookie, removeCookie } from 'tiny-cookie';
 import { AxiosResponse, AxiosError } from 'axios';
 import { ActionInputs, ApiError } from '../interfaces/api';
-import { User } from '../interfaces/user';
+import { USER, USER_STATUS, USER_LOCATION } from '../interfaces/user';
 import ACTIONS from '../types-actions';
 import MUTATIONS from '../types-mutations';
 import API from '../../utils/api';
@@ -12,7 +12,7 @@ import HTTP from '../../utils/http';
 interface DefaultState {
   validSession: boolean
   token: string
-  user: null | User
+  user: null | USER
 }
 
 const defaultState: DefaultState = {
@@ -76,7 +76,7 @@ const actions = {
     // Master load for app load state
     commit(MUTATIONS.GLOBAL_MASTER_LOADING_START);
     return API.user.reflect().then((response: any) => {
-      commit(MUTATIONS.USER_LOAD_DATA, { user: response.data.data });
+      commit(MUTATIONS.USER_LOAD_DATA, { user: response.data.data.user });
       return true;
     }).catch((error: any) => {
       dispatch(ACTIONS.USER_LOGOUT);
@@ -89,6 +89,48 @@ const actions = {
   [ACTIONS.USER_LOGOUT]({ commit }: ActionInputs) {
     commit(MUTATIONS.USER_LOGOUT);
     // NOTE: list all store reset mutations here:
+  },
+
+  [ACTIONS.USER_CHANGE_STATE](
+    { commit, state }: ActionInputs,
+    { status }: { status: USER_STATUS },
+  ): void | Promise<void> {
+    // Not valid for non registered users
+    if (!state.validSession) return undefined;
+    // No need to call  if user is not changing the status
+    if (status === state.user.status) return undefined;
+    // User cannot set FALECIDO to himself
+    if (status === USER_STATUS.FALECIDO) return undefined;
+
+    commit(MUTATIONS.GLOBAL_MASTER_LOADING_START);
+    return API.user.changeStatus(status).then((response: any) => {
+      commit(MUTATIONS.USER_LOAD_DATA, { user: response.data.data.user });
+    }).catch((error: any) => {
+      throw API.buildError(error);
+    }).finally(() => {
+      commit(MUTATIONS.GLOBAL_MASTER_LOADING_END);
+    });
+  },
+
+  [ACTIONS.USER_CHANGE_LOCATION](
+    { commit, state }: ActionInputs,
+    { location }: { location: USER_LOCATION },
+  ): void | Promise<void> {
+    // Not valid for non registered users
+    if (!state.validSession) return undefined;
+    // No need to call  if user is not changing the status
+    if (location === state.user.location) return undefined;
+
+    console.log({ location });
+
+    commit(MUTATIONS.GLOBAL_MASTER_LOADING_START);
+    return API.user.changeLocation(location).then((response: any) => {
+      commit(MUTATIONS.USER_LOAD_DATA, { user: response.data.data.user });
+    }).catch((error: any) => {
+      throw API.buildError(error);
+    }).finally(() => {
+      commit(MUTATIONS.GLOBAL_MASTER_LOADING_END);
+    });
   },
 };
 
@@ -115,7 +157,7 @@ const mutations = {
    * @param state
    * @param user
    */
-  [MUTATIONS.USER_LOAD_DATA](state: DefaultState, { user }: { user: User }) {
+  [MUTATIONS.USER_LOAD_DATA](state: DefaultState, { user }: { user: USER }) {
     state.validSession = true;
     state.user = user;
   },

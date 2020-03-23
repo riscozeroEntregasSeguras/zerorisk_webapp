@@ -1,0 +1,28 @@
+@import "../variables.scss";
+
+.navigation {
+    width: 100%;
+    color: $black-1;
+    background: $white-1;
+    
+    .navigation__container {
+        height: 100%;
+        max-width: 66em;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 auto;
+
+        .navigation__container-title {
+            color: $black-1;
+        }
+    }
+
+    .navigation__item {
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        padding: 0.5em;
+        font-size: 0.95em;
+    }
+}

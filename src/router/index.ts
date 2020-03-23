@@ -19,7 +19,7 @@ const ROUTER_HOME: RouteConfig = {
   component: ViewHome,
   meta: {
     pageGuard: PAGES_GUARD.PUBLIC,
-    routeClass: 'routeCenterCard',
+    routeClass: 'page--home',
   },
 };
 

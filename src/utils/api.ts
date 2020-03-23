@@ -1,5 +1,6 @@
 import { AxiosError } from 'axios';
 // Apis per object concern
+import GlobalApi from './apis/global';
 import UserApi from './apis/user';
 
 export default {
@@ -26,5 +27,6 @@ export default {
 
     return RequestError.response.data;
   },
+  global: GlobalApi,
   user: UserApi,
 };

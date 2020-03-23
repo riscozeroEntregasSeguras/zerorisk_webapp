@@ -1,7 +1,6 @@
 // Globals
 @import "global/reset.scss";
 @import "global/base.scss";
-@import "global/routes.scss";
 @import "global/page.scss";
 @import "global/button.scss";
 @import "global/input.scss";
@@ -17,3 +16,6 @@
 // Components
 @import "components/loading.scss";
 @import "components/notifications.scss";
+@import "components/state.scss";
+@import "components/location.scss";
+@import "components/navigation.scss";
