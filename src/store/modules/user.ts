@@ -3,7 +3,12 @@ import { cloneDeep } from 'lodash';
 import { setCookie, removeCookie } from 'tiny-cookie';
 import { AxiosResponse, AxiosError } from 'axios';
 import { ActionInputs, ApiError } from '../interfaces/api';
-import { USER, USER_STATUS, USER_LOCATION } from '../interfaces/user';
+import {
+  USER_INPUTS,
+  USER,
+  USER_STATUS,
+  USER_LOCATION,
+} from '../interfaces/user';
 import ACTIONS from '../types-actions';
 import MUTATIONS from '../types-mutations';
 import API from '../../utils/api';
@@ -27,11 +32,16 @@ const getters = {};
 
 const actions = {
 
-  [ACTIONS.USER_PERFORM_REGISTER](
+  [ACTIONS.USER_REGISTER](
     { commit }: ActionInputs,
-    { email, password, age }: { email: string, password: string, age: number },
+    {
+      email,
+      name,
+      nickname,
+      password,
+    }: USER_INPUTS,
   ): Promise<boolean> {
-    return API.user.register(email, password, age).then((response: AxiosResponse) => {
+    return API.user.register(email, name, nickname, password).then((response: AxiosResponse) => {
       return true;
     }).catch((error: AxiosError | ApiError) => {
       throw API.buildError(error as AxiosError);
@@ -55,8 +65,10 @@ const actions = {
     return API.user.login(email, password).then((response: AxiosResponse) => {
       commit(MUTATIONS.USER_SET_TOKEN, { token: response.data.data.token });
       commit(MUTATIONS.USER_LOAD_DATA, { user: response.data.data.user });
+      dispatch(ACTIONS.INVITATIONS_LOAD, { userId: response.data.data.user.id });
       return true;
     }).catch((error: AxiosError | ApiError) => {
+      console.log({ error });
       dispatch(ACTIONS.USER_LOGOUT);
       throw API.buildError(error as AxiosError);
     });
@@ -77,6 +89,7 @@ const actions = {
     commit(MUTATIONS.GLOBAL_MASTER_LOADING_START);
     return API.user.reflect().then((response: any) => {
       commit(MUTATIONS.USER_LOAD_DATA, { user: response.data.data.user });
+      dispatch(ACTIONS.INVITATIONS_LOAD, { userId: response.data.data.user.id });
       return true;
     }).catch((error: any) => {
       dispatch(ACTIONS.USER_LOGOUT);
@@ -89,6 +102,7 @@ const actions = {
   [ACTIONS.USER_LOGOUT]({ commit }: ActionInputs) {
     commit(MUTATIONS.USER_LOGOUT);
     // NOTE: list all store reset mutations here:
+    commit(MUTATIONS.INVITATIONS_RESET);
   },
 
   [ACTIONS.USER_CHANGE_STATE](
@@ -121,8 +135,6 @@ const actions = {
     // No need to call  if user is not changing the status
     if (location === state.user.location) return undefined;
 
-    console.log({ location });
-
     commit(MUTATIONS.GLOBAL_MASTER_LOADING_START);
     return API.user.changeLocation(location).then((response: any) => {
       commit(MUTATIONS.USER_LOAD_DATA, { user: response.data.data.user });
@@ -130,6 +142,15 @@ const actions = {
       throw API.buildError(error);
     }).finally(() => {
       commit(MUTATIONS.GLOBAL_MASTER_LOADING_END);
+    });
+  },
+
+  [ACTIONS.USER_INVITE_USER](
+    { commit, state }: ActionInputs,
+    { email }: { email: string },
+  ): void | Promise<any> {
+    return API.user.invite(email).catch((error: any) => {
+      throw API.buildError(error);
     });
   },
 };

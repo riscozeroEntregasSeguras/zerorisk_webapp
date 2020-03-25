@@ -11,7 +11,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import PAGES from './router/pages';
+import { PAGES } from './router/pages';
 import ACTIONS from './store/types-actions';
 import MUTATIONS from './store/types-mutations';
 import { USER_STATUS } from './store/interfaces/user';
@@ -39,6 +39,7 @@ export default class App extends Vue {
 
   get userStatus(): '' | USER_STATUS {
     if (!this.$store.state.user.validSession) return '';
+    if (this.$route.name !== PAGES.HOME) return '';
     return this.$store.state.user.user.status;
   }
 

@@ -21,7 +21,8 @@ $navigation_height: 3em;
         height: calc(100vh - #{$navigation_height});
         overflow-x: hidden;
         overflow-y: auto;
-        max-width: 66em;
+        max-width: 68em;
+        padding: 1em;
         margin: 0 auto;
     }
 
@@ -39,6 +40,14 @@ $navigation_height: 3em;
             align-items: center;
             justify-content: center;
             flex-direction: column;
+        }
+    }
+    
+    &.page--login {
+        .page__content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     }
 }

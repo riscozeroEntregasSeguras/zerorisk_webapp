@@ -11,6 +11,7 @@
     height: 3em;
     line-height: 3em;
     border: solid 1.5px $white-1;
+    padding: 0 1em;
 
     &:active {
         outline: none;
@@ -30,6 +31,16 @@
         color: $white-1;
     }
 
+    &.button--fullwitdh {
+        width: 100%;
+    }
+
+    &.button--slim {
+        height: 2.5em;
+        line-height: 2.5em;
+        font-size: 0.85em;
+    }
+
     // COLOR mutations
     &.button--ESTOU_BEM { background: $state_estou_bem; }
     &.button--EU_QUARENTENA { background: $state_em_quarentena; }
@@ -37,4 +48,8 @@
     &.button--COM_CONVID_DOENTE { background: $state_com_convid_doente; }
     &.button--RECUPERADO { background: $state_recuperado; }
     &.button--FALECIDO { background: $state_falecido; }
+
+    &.button--warning { background: $state_em_quarentena; }
+    &.button--success { background: $state_estou_bem; }
+
 }

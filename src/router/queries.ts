@@ -3,6 +3,7 @@
 
 enum ROUTER_QUERIES {
     REDIRECT = 'redirect',
+    FILL_USER = 'fillUser',
 }
 
 export default ROUTER_QUERIES;

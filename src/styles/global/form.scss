@@ -1,9 +1,14 @@
 @import "../variables.scss";
 
 .form {
+    .form__title {
+        font-size: 1.3em;
+        margin-bottom: 1em;
+    }
 
     .form__group {
         position: relative;
+        margin-bottom: 1.2em;
 
         .form__group-label {
             display: block;

@@ -14,10 +14,18 @@ export enum USER_LOCATION {
   'HOSPITALIZADO' = 'HOSPITALIZADO',
 }
 
+export interface USER_INPUTS {
+  email: string
+  name: string
+  nickname: string
+  password: string
+}
+
 export interface USER {
   id: string
   email: string
   name: string
+  nickname: string
   emailValidated: boolean
   status: USER_STATUS
   location: USER_LOCATION

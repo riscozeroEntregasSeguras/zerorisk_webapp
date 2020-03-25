@@ -8,6 +8,7 @@ import API from '../utils/api';
 // Modules
 import user from './modules/user';
 import notifications from './modules/notifications';
+import invitations from './modules/invitations';
 
 Vue.use(Vuex);
 
@@ -18,6 +19,7 @@ export default new Vuex.Store({
   modules: {
     user,
     notifications,
+    invitations,
   },
   state: {
     online: true,

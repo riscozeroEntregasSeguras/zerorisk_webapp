@@ -1,0 +1,27 @@
+@import "../variables.scss";
+
+.invitation {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.3em;
+
+    .invitation__data {
+        flex: 1;
+
+        .invitation__data-name {
+            font-size: 1.1em;
+            font-weight: 700;
+        }
+        .invitation__data-email {
+            margin-left: 0.7em;
+            font-size: 0.9em;
+        }
+    }
+    .invitation__actions {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+    }
+}

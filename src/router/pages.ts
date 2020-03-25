@@ -2,6 +2,9 @@ export enum PAGES {
     ROOT = 'ROOT', // Only defined path '/', redirects to login
     HOME = 'HOME',
     LOGIN = 'LOGIN',
+    REGISTER = 'REGISTER',
+    CIRCLE = 'CIRCLE',
+    INVITATIONS = 'INVITATIONS',
 }
 
 export enum PAGES_GUARD {

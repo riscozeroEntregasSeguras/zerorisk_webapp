@@ -1,10 +1,11 @@
 @import "../variables.scss";
 
 .card {
-    width: 100%;
-    padding: 20px;
+    position: relative;
+    padding: 1.2em;
     background: $white-1;
     box-shadow: $shadow-1;
+    border-radius: 0.2em;
 
     &.card--small {
         max-width: 30em;
