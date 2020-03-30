@@ -1,53 +1,30 @@
+// TO REFACTOR
+
 @import "../variables";
 
 // File sets up all navigation an page content proportions.
 // Keep it here in the same place
 
-$navigation_height: 3em;
-
 .page {
-    background: $white-4;
-
-    // Only defining height/width that affects the page
-    // General styling still in /components/navigation.scss
-    .navigation {
-        // RESPONSIVE
-        height: $navigation_height;
-        width: 100%;
-    }
+    background: $white-1;
 
     .page__content {
         font-size: 1em;
-        height: calc(100vh - #{$navigation_height});
+        height: 100%;
         overflow-x: hidden;
         overflow-y: auto;
-        max-width: 68em;
-        padding: 1em;
-        margin: 0 auto;
     }
 
-    &.page--ESTOU_BEM { background-color: $state_estou_bem; }
-    &.page--EU_QUARENTENA { background-color: $state_em_quarentena; }
-    &.page--COM_CONVID_SEM_SINTOMAS { background-color: $state_com_convid_sem_sintomas; }
-    &.page--COM_CONVID_DOENTE { background-color: $state_com_convid_doente; }
-    &.page--RECUPERADO { background-color: $state_recuperado; }
-    &.page--FALECIDO { background-color: $state_falecido; }
-
     // Route mutations
+    &.page--login {
+        .page__content {}
+    }
     &.page--home {
         .page__content {
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-        }
-    }
-    
-    &.page--login {
-        .page__content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
     }
 }

@@ -1,29 +1,18 @@
 <template>
   <div class="page__content">
-    <div class="card">
-        <form class="form"
-              @submit.prevent="login()">
-          <h2 class="form__title">Entrar</h2>
-          <div class="form__group">
-            <label class="form__group-label">Email</label>
-            <input class="input"
-                   type="email"
-                   v-model="email"/>
-          </div>
-          <div class="form__group">
-            <label class="form__group-label">Password</label>
-            <input class="input"
-                   type="password"
-                   v-model="password"/>
-          </div>
-          <div v-if="errorMessage"
-               class="notice notice--error">
-            <p>{{errorMessage}}</p>
-          </div>
-          <button type="submit"
-                  class="button button--fullwitdh">Entrar</button>
-        </form>
-    </div>
+    <design-virus/>
+    <form class="form form--center form--slim"
+          @submit.prevent="login()">
+      <inputs-input label="Email"
+                    :value="email"
+                    @input="(newValue) => { email = newValue }"/>
+      <inputs-input label="Password"
+                    type="password"
+                    :value="password"
+                    @input="(newValue) => { password = newValue }"/>
+      <button class="button form__submit" type="submit">LOGIN</button>
+      <router-link class="link form__link" :to="{ name: PAGES.REGISTER }">register</router-link>
+    </form>
   </div>
 </template>
 <script lang="ts">
@@ -31,15 +20,20 @@ import { Component, Vue } from 'vue-property-decorator';
 import { PAGES } from '../router/pages';
 import ACTIONS from '../store/types-actions';
 import MUTATIONS from '../store/types-mutations';
-// Components
-import SelectorState from '../components/selector/state.vue';
-import SelectorLocation from '../components/selector/location.vue';
 import ROUTER_QUERIES from '../router/queries';
+// Components
+import DesignVirus from '../components/design/virus.vue';
+import InputsInput from '../components/inputs/input.vue';
 
 @Component({
-  components: { SelectorState, SelectorLocation },
+  components: {
+    DesignVirus,
+    InputsInput,
+  },
 })
 export default class ViewLogin extends Vue {
+  PAGES = PAGES;
+
   email: string = 'test_1@gmail.com';
 
   password: string = '12345678';
@@ -54,7 +48,7 @@ export default class ViewLogin extends Vue {
     this.$store.commit(MUTATIONS.GLOBAL_MASTER_LOADING_START);
     this.$store
       .dispatch(ACTIONS.USER_REQUEST_TOKEN, inputs)
-      .then(() => { this.$router.push({ name: PAGES.HOME }); })
+      .then(() => { this.$router.push({ name: PAGES.CIRCLE }); })
       .catch((error) => { this.errorMessage = error.error.message; })
       .finally(() => { this.$store.commit(MUTATIONS.GLOBAL_MASTER_LOADING_END); });
   }

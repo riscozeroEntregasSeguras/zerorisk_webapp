@@ -1,55 +1,87 @@
+// TO REFACTOR
+
 @import "../variables";
 
-select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-}
+$input_padding: 0.6em;
 
 .input {
-    box-sizing: border-box;
-    color: $grey-3;
-    display: block;
-    width: 100%;
-    background: $grey-4;
-    border: solid .5px rgba(208,208,208,0.3);
-    border-radius: 0.2em;
-    font-size: 1em;
-    // RESPONSIVE
-    line-height: 2em;
-    padding: 0 0.8em;
+    position: relative;
+    margin-bottom: 1.7em;
 
-    /* Chrome, Firefox, Opera, Safari 10.1+ */
-    &::placeholder { 
+    .input__label {
+        position: absolute;
+        top: 50%;
+        left: $input_padding;
+        transform: translateY(-50%);
+        color: $red-1;
+        font-size: 1.4em;
+        text-transform: uppercase;
+        font-weight: 700;
+        transition: transform 0.2s ease-in-out, font-size 0.2s ease-in-out, top 0.2s ease-in-out
+    }
+
+    .input__input {
+        box-sizing: border-box;
         color: $grey-3;
-        opacity: .6;
-    }
-    
-    /* Internet Explorer 10-11 */
-    &:-ms-input-placeholder {
-        color: $grey-3;
-        opacity: .6;
+        display: block;
+        width: 100%;
+        background: $grey-4;
+        border: none;
+        border-radius: 0.2em;
+        font-size: 1.2em;
+        line-height: 3.4em;
+        padding: 0 $input_padding;
+        
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        &::placeholder { 
+            color: $grey-3;
+            opacity: .6;
+            font-size: 1.2em;
+        }
+        
+        /* Internet Explorer 10-11 */
+        &:-ms-input-placeholder {
+            color: $grey-3;
+            opacity: .6;
+            font-size: 1.2em;
+        }
+
+        /* Microsoft Edge */
+        &::-ms-input-placeholder {
+            color: $grey-3;
+            opacity: .6;
+            font-size: 1.2em;
+        }
+
+        &.input--textarea {
+            padding: 0.8em;
+            resize: none;
+            line-height: 1.2em;
+            height: 10em;
+            font-size: 1.2em;
+        }
     }
 
-    /* Microsoft Edge */
-    &::-ms-input-placeholder {
-        color: $grey-3;
-        opacity: .6;
+    .input__add {
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 4em;
+        background: $red-1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .input__add-icon {}
     }
 
-    &.input--textarea {
-        padding: 0.8em;
-        resize: none;
-        line-height: 1.2em;
-        height: 10em;
-    }
-
-    // State mutations
-    &.input--error {
-        border: solid 2px $red-error;
-        border-radius: 4px;
-    }
-
-    &.input--disabled {
-        cursor: not-allowed;
+    &.input--active {
+        .input__label {
+            transform: none;
+            top: -0.5em;
+            font-size: 1em;
+        }
     }
 }

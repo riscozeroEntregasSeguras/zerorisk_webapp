@@ -9,6 +9,7 @@ import API from '../utils/api';
 import user from './modules/user';
 import notifications from './modules/notifications';
 import invitations from './modules/invitations';
+import circle from './modules/circle';
 
 Vue.use(Vuex);
 
@@ -20,6 +21,7 @@ export default new Vuex.Store({
     user,
     notifications,
     invitations,
+    circle,
   },
   state: {
     online: true,

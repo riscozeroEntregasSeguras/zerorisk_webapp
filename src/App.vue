@@ -1,11 +1,13 @@
 <template>
-  <div id="app" class="page" :class="pageClass">
+  <div id="app" class="page" :class="routeClass">
     <misc-loading v-if="masterLoading"/>
     <view-offline v-if="!isOnline"/>
     <template v-else>
       <modals-container />
-      <misc-navigation />
+      <misc-navigation/>
       <router-view />
+      <design-invitations v-if="$route.name !== PAGES.INVITATIONS && invitations.length > 0"
+                          :invitations="invitations"/>
     </template>
   </div>
 </template>
@@ -19,15 +21,19 @@ import { USER_STATUS } from './store/interfaces/user';
 import MiscLoading from './components/misc/loading.vue';
 import MiscNavigation from './components/misc/navigation.vue';
 import ViewOffline from './views/offline.vue';
+import DesignInvitations from './components/design/invitations.vue';
 
 @Component({
   components: {
     MiscLoading,
     MiscNavigation,
     ViewOffline,
+    DesignInvitations,
   },
 })
 export default class App extends Vue {
+  PAGES = PAGES;
+
   /**
    * Routes can define a global class injected on the root app
    * element.
@@ -35,16 +41,6 @@ export default class App extends Vue {
   get routeClass(): undefined | string {
     if (!this.$route.meta) return '';
     return this.$route.meta.routeClass || '';
-  }
-
-  get userStatus(): '' | USER_STATUS {
-    if (!this.$store.state.user.validSession) return '';
-    if (this.$route.name !== PAGES.HOME) return '';
-    return this.$store.state.user.user.status;
-  }
-
-  get pageClass(): string {
-    return `${this.routeClass} page--${this.userStatus}`;
   }
 
   get masterLoading(): boolean {
@@ -55,9 +51,13 @@ export default class App extends Vue {
     return this.$store.state.online;
   }
 
+  get invitations(): number {
+    return this.$store.state.invitations.pending.length;
+  }
+
   logout() {
     this.$store.dispatch(ACTIONS.USER_LOGOUT).then(() => {
-      this.$router.push({ name: PAGES.HOME });
+      this.$router.push({ name: PAGES.LOGIN });
     });
   }
 

@@ -145,11 +145,11 @@ const actions = {
     });
   },
 
-  [ACTIONS.USER_INVITE_USER](
+  [ACTIONS.USER_INVITE_USERS](
     { commit, state }: ActionInputs,
-    { email }: { email: string },
+    { emails }: { emails: string },
   ): void | Promise<any> {
-    return API.user.invite(email).catch((error: any) => {
+    return API.user.invite(emails).catch((error: any) => {
       throw API.buildError(error);
     });
   },

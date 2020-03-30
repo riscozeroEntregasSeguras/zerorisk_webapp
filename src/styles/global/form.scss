@@ -1,56 +1,26 @@
+// TO REFACTOR
+
 @import "../variables.scss";
 
 .form {
-    .form__title {
-        font-size: 1.3em;
-        margin-bottom: 1em;
+    position: relative;
+    padding: 0 1em 2em;
+
+    .form__submit {
+        margin-top: 1.5em;
+    }
+    .form__link {
+        margin-top: 1em;
+        text-align: center;
     }
 
-    .form__group {
-        position: relative;
-        margin-bottom: 1.2em;
-
-        .form__group-label {
-            display: block;
-            color: $grey-3;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .form__group-icon {
-            position: absolute;
-            bottom: 11px;
-            right: 16px;
-            font-size: 18px;
-            color: $grey-5;
-
-            span {
-                display: inline-block;
-                margin-right: 8px;
-                font-weight: 700;
-            }
-        }
-
-        &.form__group--flex {
-            display: flex;
-            align-items: flex-start;
-            justify-content: flex-start;
-
-            > .form__group {
-                margin: 0 1.3em;
-                flex: 1;
-
-                &:first-child {
-                    margin-left: 0;
-                }
-                &:last-child {
-                    margin-right: 0;
-                }
-            }
-        }
-
-        &.form__group--disabled {
-            opacity: 0.4;
-        }
+    &.form--center {
+        margin: 0 auto;
+    }
+    &.form--slim {
+        max-width: 25em;
+    }
+    &.form--status {
+        max-width: 30em;
     }
 }

@@ -1,15 +1,21 @@
 <template>
-  <div class="card invitation">
+  <div class="invitation">
     <misc-loading v-if="isRequesting"/>
     <div class="invitation__data">
       <span class="invitation__data-name">{{invitation.name}}</span>
       <span class="invitation__data-email">({{invitation.email}})</span>
     </div>
     <div class="invitation__actions">
-      <button class="button button--upper button--warning button--slim"
-              @click="reject()">Reject</button>
-      <button class="button button--upper button--success"
-              @click="accept()">Accept</button>
+      <button class="button button-icon button--error"
+              @click="reject()"
+              title="recusar convite">
+        <font-awesome-icon :icon="['fas', 'times']" />
+      </button>
+      <button class="button button-icon button--success"
+              @click="accept()"
+              title="aceitar convite">
+        <font-awesome-icon :icon="['fas', 'check']" />
+      </button>
     </div>
   </div>
 </template>

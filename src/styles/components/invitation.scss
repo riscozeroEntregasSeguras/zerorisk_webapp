@@ -1,3 +1,5 @@
+// REFACTOR
+
 @import "../variables.scss";
 
 .invitation {
@@ -6,22 +8,29 @@
     align-items: center;
     justify-content: space-between;
     margin-top: 1.3em;
+    max-width: 40em;
+    padding: 0 1em;
 
     .invitation__data {
         flex: 1;
 
         .invitation__data-name {
-            font-size: 1.1em;
+            font-size: 1.2em;
             font-weight: 700;
+            margin-right: 0.2em;
         }
         .invitation__data-email {
-            margin-left: 0.7em;
             font-size: 0.9em;
+            font-style: italic;
         }
     }
     .invitation__actions {
         display: flex;
         align-items: flex-end;
         justify-content: flex-end;
+
+        button {
+            margin-left: 0.3em;
+        }
     }
 }

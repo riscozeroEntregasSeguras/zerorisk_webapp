@@ -20,8 +20,8 @@ export default {
   changeLocation(location: USER_LOCATION) {
     return HTTP.api().post('/user/location', { location });
   },
-  invite(email: string) {
-    return HTTP.api().post('/user/invite', { email });
+  invite(emails: string) {
+    return HTTP.api().post('/user/invite', { emails });
   },
   // Refactor
   reflect() {

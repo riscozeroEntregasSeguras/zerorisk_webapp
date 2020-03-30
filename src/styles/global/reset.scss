@@ -19,6 +19,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     display: block;
 }
   
+a {
+    text-decoration: none;
+}
+
 body {
     line-height: 1;
 }
@@ -33,17 +37,23 @@ blockquote, q {
   
 blockquote {
     &:before, &:after {
-      content: '';
-      content: none; } }
-  
+        content: '';
+        content: none;
+    }
+}
+
 q {
     &:before, &:after {
         content: '';
         content: none;
     }
 }
-  
+
 table {
     border-collapse: collapse;
     border-spacing: 0;
+}
+
+button {
+    border: none;
 }

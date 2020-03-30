@@ -1,45 +1,46 @@
 <template>
-  <div class="card">
+  <form class="form form--slim form--center" @submit.prevent="addPersons()">
     <misc-loading v-if="isRequesting"/>
-    <form class="form"
-          @submit.prevent="addPerson()">
-        <h2 class="form__title">Adicionar pessoa ao meu círculo</h2>
-        <div class="form__group">
-        <label class="form__group-label">Email</label>
-        <input class="input"
-               type="email"
-               v-model="addEmail"/>
-        </div>
-        <div v-if="errorMessage" class="notice notice--error">
-          <p>{{errorMessage}}</p>
-        </div>
-        <button type="submit"
-                class="button button--fullwitdh">Adicionar</button>
-    </form>
-  </div>
+    <h3 class="text__title">O teu círculo</h3>
+    <h4 class="text__subtitle">Adiciona o email dos teus amigos para saberes como estão!</h4>
+    <inputs-input v-for="(newEmail, index) in addEmails"
+                  :key="'add_email_' + index"
+                  :value="newEmail"
+                  :showPlus="index === addEmails.length - 1"
+                  placeholder="Adiciona um email"
+                  @input="(newValue) => { addEmails[index] = newValue }"
+                  @plus="addEmails.push('')"/>
+    <button class="button form__submit" type="submit">ADICIONAR</button>
+  </form>
 </template>
 <script lang="ts">
+import * as EmailValidator from 'email-validator';
 import { Component, Vue } from 'vue-property-decorator';
 import ACTIONS from '../../store/types-actions';
 import MUTATIONS from '../../store/types-mutations';
 // Components
 import MiscLoading from '../misc/loading.vue';
+import InputsInput from '../inputs/input.vue';
 
 @Component({
-  components: { MiscLoading },
+  components: { MiscLoading, InputsInput },
 })
 export default class FormInvitation extends Vue {
   isRequesting: boolean = false;
 
-  addEmail: string = 'frjijfe@fjif.com';
+  addEmails: string[] = [''];
 
   errorMessage: string = '';
 
-  addPerson() {
+  addPersons() {
+    const emails = this.addEmails.filter(EmailValidator.validate);
+    console.log(emails);
+    if (!emails || emails.length === 0) return;
     this.errorMessage = '';
     this.isRequesting = true;
     this.$store
-      .dispatch(ACTIONS.USER_INVITE_USER, { email: this.addEmail })
+      .dispatch(ACTIONS.USER_INVITE_USERS, { emails })
+      .then(() => { this.addEmails = ['']; })
       .catch((error) => { this.errorMessage = error.error.message; })
       .finally(() => { this.isRequesting = false; });
   }

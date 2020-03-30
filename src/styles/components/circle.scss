@@ -1,0 +1,16 @@
+// REFACTOR
+
+@import "../variables.scss";
+
+.circle {
+    padding: 1.4em;
+    max-width: 65em;
+    margin: 0 auto;
+
+    .circle__connections {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+}

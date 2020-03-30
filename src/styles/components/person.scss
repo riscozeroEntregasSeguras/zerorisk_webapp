@@ -1,0 +1,67 @@
+@import "../variables.scss";
+
+.person {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1em;
+    padding: 0 0.5em;
+    
+    width: 50%;
+    @media screen and (min-width: $break-tablet) { width: 33.333333%; }
+    @media screen and (min-width: $break-desktop) { width: 25%; }
+    
+    .person__avatar {
+        border-radius: 50%;
+        overflow: hidden;
+        border: solid 3px $green-1;
+        box-sizing: border-box;
+
+        img {
+            height: 3.5em;
+            width: 3.5em;
+        }
+    }
+
+    .person__info {
+        margin-left: 0.8em;
+        flex: 1;
+
+        .person__info-name {
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-bottom: 0.2em;
+        }
+
+        .person__info-nickname {
+            font-size: 0.8em;
+            font-style: italic;
+        }
+    }
+
+    .person__call {}
+
+    // Color mutations
+    &.person--ESTOU_BEM {
+        .person__avatar { border-color: $green-1; }
+        .person__info { color: $green-1; }
+    }
+    &.person--EU_QUARENTENA {
+        .person__avatar { border-color: $yellow-1; }
+        .person__info { color: $yellow-1; }
+    }
+    &.person--COM_CONVID_SEM_SINTOMAS {
+        .person__avatar { border-color: $orange-1; }
+        .person__info { color: $orange-1; }
+    }
+    &.person--COM_CONVID_DOENTE {
+        .person__avatar { border-color: $red-1; }
+        .person__info { color: $red-1; }
+    }
+    &.person--RECUPERADO {
+        .person__avatar { border-color: $green-1; }
+        .person__info { color: $green-1; }
+    }
+}
+

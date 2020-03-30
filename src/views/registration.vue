@@ -1,46 +1,29 @@
 <template>
   <div class="page__content">
-    <div class="card">
-        <form class="form"
-              @submit.prevent="register()">
-          <h2 class="form__title">Registar na plataforma</h2>
-          <div class="form__group">
-            <label class="form__group-label">Email</label>
-            <input class="input"
-                   type="email"
-                   v-model="email"/>
-          </div>
-          <div class="form__group">
-            <label class="form__group-label">Nome - Família</label>
-            <input class="input"
-                   type="text"
-                   v-model="name"/>
-          </div>
-          <div class="form__group">
-            <label class="form__group-label">Alcunha - Amigos</label>
-            <input class="input"
-                   type="text"
-                   v-model="nickname"/>
-          </div>
-          <div class="form__group">
-            <label class="form__group-label">Password</label>
-            <input class="input"
-                   type="password"
-                   v-model="password"/>
-          </div>
-          <div class="form__group">
-            <label class="form__group-label">Confirmar Password</label>
-            <input class="input"
-                   type="password"
-                   v-model="passwordConfirm"/>
-          </div>
-          <div v-if="errorMessage"
-               class="notice notice--error">
-            <p>{{errorMessage}}</p>
-          </div>
-          <button type="submit"
-                  class="button button--fullwitdh">Registar</button>
-        </form>
+    <div class="page__content">
+      <design-virus :isSmall="true"/>
+      <form class="form form--center form--slim"
+            @submit.prevent="register()">
+        <inputs-input label="Email"
+                      :value="email"
+                      @input="(newValue) => { email = newValue }"/>
+        <inputs-input label="Nome - Família"
+                      :value="name"
+                      @input="(newValue) => { name = newValue }"/>
+        <inputs-input label="Alcunha - Amigos"
+                      :value="nickname"
+                      @input="(newValue) => { nickname = newValue }"/>
+        <inputs-input label="Password"
+                      type="password"
+                      :value="password"
+                      @input="(newValue) => { password = newValue }"/>
+        <inputs-input label="Confirmar Password"
+                      type="password"
+                      :value="passwordConfirm"
+                      @input="(newValue) => { passwordConfirm = newValue }"/>
+        <button class="button form__submit" type="submit">Registrar</button>
+        <router-link class="link form__link" :to="{ name: PAGES.LOGIN }">login</router-link>
+      </form>
     </div>
   </div>
 </template>
@@ -51,13 +34,15 @@ import ROUTER_QUERIES from '../router/queries';
 import ACTIONS from '../store/types-actions';
 import MUTATIONS from '../store/types-mutations';
 // Components
-import SelectorState from '../components/selector/state.vue';
-import SelectorLocation from '../components/selector/location.vue';
+import DesignVirus from '../components/design/virus.vue';
+import InputsInput from '../components/inputs/input.vue';
 
 @Component({
-  components: { SelectorState, SelectorLocation },
+  components: { DesignVirus, InputsInput },
 })
 export default class ViewRegister extends Vue {
+  PAGES = PAGES;
+
   email: string = 'test_1@gmail.com';
 
   name: string = 'Nome Familia';
@@ -84,7 +69,6 @@ export default class ViewRegister extends Vue {
       return;
     }
 
-    console.log({ inputs });
     this.$store.commit(MUTATIONS.GLOBAL_MASTER_LOADING_START);
     this.$store
       .dispatch(ACTIONS.USER_REGISTER, inputs)

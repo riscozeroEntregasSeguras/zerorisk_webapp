@@ -3,7 +3,7 @@ import { Route } from 'vue-router';
 import store from '../store';
 import ACTIONS from '../store/types-actions';
 import MUTATIONS from '../store/types-mutations';
-import PAGES, { PAGES_GUARD } from './pages';
+import { PAGES, PAGES_GUARD } from './pages';
 import ROUTER_QUERIES from './queries';
 
 // Recover session cookie with auth token
@@ -90,7 +90,7 @@ export default async function navigationGuard(to: Route, from: Route, next: any)
   // for page with guard NO_SESSION
   // In that case, redirect to login
   if (to.meta.pageGuard === PAGES_GUARD.NO_SESSION) {
-    next({ name: PAGES.HOME });
+    next({ name: PAGES.CIRCLE });
     return;
   }
 

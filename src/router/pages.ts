@@ -1,9 +1,10 @@
 export enum PAGES {
     ROOT = 'ROOT', // Only defined path '/', redirects to login
-    HOME = 'HOME',
     LOGIN = 'LOGIN',
     REGISTER = 'REGISTER',
     CIRCLE = 'CIRCLE',
+    EDIT = 'EDIT',
+    INVITE = 'INVITE',
     INVITATIONS = 'INVITATIONS',
 }
 
@@ -15,5 +16,3 @@ export enum PAGES_GUARD {
     // Only user without session can access
     NO_SESSION = 'NO_SESSION',
 }
-
-export default PAGES;

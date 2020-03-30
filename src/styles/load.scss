@@ -7,17 +7,21 @@
 @import "global/checkbox.scss";
 @import "global/form.scss";
 @import "global/text.scss";
-@import "global/card.scss";
-@import "global/list.scss";
-@import "global/listItem.scss";
 @import "global/modal.scss";
-@import "global/radio.scss";
 @import "global/badge.scss";
+@import "global/link.scss";
+@import "global/spacers.scss";
 
 // Components
+@import "components/virus.scss";
+@import "components/person.scss";
+@import "components/add.scss";
+@import "components/inviteCounter.scss";
+// TO REFACTOR
 @import "components/loading.scss";
 @import "components/notifications.scss";
 @import "components/state.scss";
 @import "components/location.scss";
 @import "components/navigation.scss";
 @import "components/invitation.scss";
+@import "components/circle.scss";

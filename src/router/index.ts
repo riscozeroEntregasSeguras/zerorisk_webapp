@@ -3,10 +3,11 @@ import VueRouter, { RouteConfig } from 'vue-router';
 import { PAGES, PAGES_GUARD } from './pages';
 import navigationGuard from './navigationGuard';
 // Page views
-import ViewHome from '../views/home.vue';
+import ViewEdit from '../views/edit.vue';
 import ViewLogin from '../views/login.vue';
 import ViewCircle from '../views/circle.vue';
 import ViewRegistration from '../views/registration.vue';
+import ViewInvitate from '../views/invite.vue';
 import ViewInvitation from '../views/invitations.vue';
 
 Vue.use(VueRouter);
@@ -14,17 +15,7 @@ Vue.use(VueRouter);
 const ROUTE_ROOT: RouteConfig = {
   path: '/',
   name: PAGES.ROOT,
-  redirect: { name: PAGES.HOME },
-};
-
-const ROUTER_HOME: RouteConfig = {
-  path: '/home',
-  name: PAGES.HOME,
-  component: ViewHome,
-  meta: {
-    pageGuard: PAGES_GUARD.PUBLIC,
-    routeClass: 'page--home',
-  },
+  redirect: { name: PAGES.LOGIN },
 };
 
 const ROUTER_LOGIN: RouteConfig = {
@@ -34,16 +25,6 @@ const ROUTER_LOGIN: RouteConfig = {
   meta: {
     pageGuard: PAGES_GUARD.NO_SESSION,
     routeClass: 'page--login',
-  },
-};
-
-const ROUTER_CIRCLE: RouteConfig = {
-  path: '/circle',
-  name: PAGES.CIRCLE,
-  component: ViewCircle,
-  meta: {
-    pageGuard: PAGES_GUARD.PRIVATE,
-    routeClass: 'page--circle',
   },
 };
 
@@ -57,6 +38,36 @@ const ROUTER_REGISTER: RouteConfig = {
   },
 };
 
+const ROUTER_EDIT: RouteConfig = {
+  path: '/edit',
+  name: PAGES.EDIT,
+  component: ViewEdit,
+  meta: {
+    pageGuard: PAGES_GUARD.PRIVATE,
+    routeClass: 'page--edit',
+  },
+};
+
+const ROUTER_CIRCLE: RouteConfig = {
+  path: '/circle',
+  name: PAGES.CIRCLE,
+  component: ViewCircle,
+  meta: {
+    pageGuard: PAGES_GUARD.PRIVATE,
+    routeClass: 'page--circle',
+  },
+};
+
+const ROUTER_INVITE: RouteConfig = {
+  path: '/invite',
+  name: PAGES.INVITE,
+  component: ViewInvitate,
+  meta: {
+    pageGuard: PAGES_GUARD.PRIVATE,
+    routeClass: 'page--invite',
+  },
+};
+
 const ROUTER_INVITATIONS: RouteConfig = {
   path: '/invitations',
   name: PAGES.INVITATIONS,
@@ -67,13 +78,13 @@ const ROUTER_INVITATIONS: RouteConfig = {
   },
 };
 
-// Need for components/utilities to check on defined routes
 export const routes = [
   ROUTE_ROOT,
-  ROUTER_HOME,
+  ROUTER_EDIT,
   ROUTER_LOGIN,
   ROUTER_CIRCLE,
   ROUTER_REGISTER,
+  ROUTER_INVITE,
   ROUTER_INVITATIONS,
 ];
 

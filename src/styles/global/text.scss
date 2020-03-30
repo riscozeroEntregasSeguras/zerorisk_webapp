@@ -1,17 +1,17 @@
+// TO REFACTOR
 @import "../variables.scss";
 
-// MUTATIONS
-.text--pointer {
-    cursor: pointer;
+.text__title {
+    color: $grey-1;
+    font-size: 1.8em;
+    font-weight: 700;
+    margin-bottom: 0.7em;
 }
 
-.text__title {
-    color: $white-2;
-    font-size: 2em;
-    font-style: italic;
-    font-weight: 700;
-
-    &.text__title--black {
-        color: $black-1;
-    }
+.text__subtitle {
+    color: $grey-1;
+    font-size: 1.4em;
+    line-height: 1.5em;
+    font-weight: 500;
+    margin-bottom: 0.4em;
 }

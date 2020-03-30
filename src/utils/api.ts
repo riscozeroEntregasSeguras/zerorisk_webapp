@@ -3,6 +3,7 @@ import { AxiosError } from 'axios';
 import GlobalApi from './apis/global';
 import UserApi from './apis/user';
 import InvitationsApi from './apis/invitations';
+import CircleApi from './apis/circle';
 
 export default {
   /**
@@ -31,4 +32,5 @@ export default {
   global: GlobalApi,
   user: UserApi,
   invitations: InvitationsApi,
+  circle: CircleApi,
 };

@@ -1,9 +1,10 @@
+// TO REFACTOR
 @import "../variables.scss";
 
 html {
     width: 100%;
     height: 100%;
-} 
+}
 
 body {
     width: 100%;
@@ -15,17 +16,13 @@ body {
     font-size: 12px;
 
     // Set up for font-size using em's
-    @media screen and (min-width: $break-tablet) { font-size: 14px; }
-    @media screen and (min-width: $break-desktop) { font-size: 16px; }
-    @media screen and (min-width: $break-hd) { font-size: 18px; }
+    @media screen and (min-width: $break-tablet) { font-size: 12px; }
+    @media screen and (min-width: $break-desktop) { font-size: 13px; }
+    @media screen and (min-width: $break-hd) { font-size: 14px; }
 }
 
 #app {
     position: relative;
     width: 100%;
     height: 100%;
-}
-
-a {
-    text-decoration: none;
 }

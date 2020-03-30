@@ -1,0 +1,11 @@
+.virus {
+
+    .virus__image {
+        max-width: 40em;
+        transform: translate(-30%, -30%);
+    }
+
+    &.virus--small {
+        max-width: 20em;
+    }
+}

@@ -1,0 +1,19 @@
+@import "../variables.scss";
+
+.add {
+    position: fixed;
+    bottom: -1em;
+    right: -1em;
+    width: 6em;
+    height: 6em;
+    border-radius: 50%;
+    background: $red-1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .add__icon {
+        width: 2em;
+        height: auto;
+    }
+}

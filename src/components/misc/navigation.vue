@@ -1,41 +1,40 @@
 <template>
-  <div class="navigation">
-    <div class="navigation__container">
-      <div class="navigation__container-left">
-          <router-link :to="{ name: PAGES.HOME }"
-                        class="navigation__item">Sobre</router-link>
-          <router-link :to="{ name: PAGES.HOME }"
-                        class="navigation__item">Apoiar</router-link>
-          <p v-if="user">{{user.email}}</p>
+  <div class="navigation"
+       :class="{
+         'navigation--open': isOpen
+       }">
+    <div class="navigation__menu" @click="isOpen = true">
+      <img src="../../assets/images/menu.png"/>
+    </div>
+    <div class="navitation__panel">
+      <div class="navitation__panel-close"  @click="isOpen = false">
+        <img src="../../assets/images/menu.png"/>
       </div>
-      <h2 class="text__title navigation__container-title">Eu estou bem</h2>
-      <div class="navigation__container-right">
-        <template v-if="user">
-          <router-link :to="{ name: PAGES.INVITATIONS }"
-                       class="badge">{{pendingInvitations}}</router-link>
-          <router-link :to="{ name: PAGES.CIRCLE }"
-                        class="navigation__item">O Meu Círculo</router-link>
-          <div class="navigation__item"
-                @click="logout()">Logout</div>
-        </template>
-        <template v-else>
-          <router-link :to="{ name: PAGES.LOGIN }"
-                        class="navigation__item">Login</router-link>
-          <router-link :to="{ name: PAGES.REGISTER }"
-                        class="navigation__item">Registar</router-link>
-        </template>
-      </div>
+      <template v-if="user">
+        <router-link class="navigation__link" :to="{ name: PAGES.CIRCLE }">
+          O Meu circulo</router-link>
+        <router-link class="navigation__link" :to="{ name: PAGES.EDIT }">Editar Estado</router-link>
+        <router-link class="navigation__link" :to="{ name: PAGES.ABOUT }">Sobre</router-link>
+        <div @click="logout()" class="navigation__link">Sair</div>
+      </template>
+      <template v-else>
+      <router-link class="navigation__link" :to="{ name: PAGES.ABOUT }">Sobre</router-link>
+        <router-link class="navigation__link" :to="{ name: PAGES.LOGIN }">Login</router-link>
+        <router-link class="navigation__link" :to="{ name: PAGES.REGISTER }">Registrar</router-link>
+      </template>
     </div>
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Watch } from 'vue-property-decorator';
 import { PAGES } from '../../router/pages';
 import ACTIONS from '../../store/types-actions';
 
 @Component({ components: {} })
 export default class MiscNavigation extends Vue {
     PAGES = PAGES;
+
+    isOpen: boolean = false;
 
     get user() {
       return this.$store.state.user.user;
@@ -49,7 +48,12 @@ export default class MiscNavigation extends Vue {
     logout() {
       this.$store
         .dispatch(ACTIONS.USER_LOGOUT)
-        .finally(() => { this.$router.push({ name: PAGES.HOME }); });
+        .finally(() => { this.$router.push({ name: PAGES.LOGIN }); });
+    }
+
+    @Watch('$route')
+    onRouteChange() {
+      this.isOpen = false;
     }
 }
 </script>
